@@ -16,11 +16,12 @@ def merge_info(SV_line,ME_line):
         if "=" in entry:
             entry_id=entry.split("=")[0]
             entry_content=entry.split("=")[1]
+            
+            if not entry_id in merged and not entry_id in ["END","CIPOS","CIEND","MATEID","SVTYPE","SVLEN"]:
+                merged[entry_id]=entry_content
         else:
             tags.add(entry)
 
-        if not entry_id in merged and not entry_id in ["END","CIPOS","CIEND","MATEID","SVTYPE","SVLEN"]:
-            merged[entry_id]=entry_content
 
     merged_info=[]
     for entry in merged:
